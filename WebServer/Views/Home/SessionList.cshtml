@@ -1,0 +1,38 @@
+﻿@using DAC.Authorization;
+@using DAC.ObjectModels;
+@model TSessionList
+
+@{
+    ViewBag.Title = "Session List";
+}
+<hr>
+<h2>Session List</h2>
+<table class="table table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Full Name</th>
+            <th scope="col">Session start</th>
+            <th scope="col">Token life time, minutes</th>
+            <th scope="col">Kick</th>
+        </tr>
+    </thead>
+    <tbody>
+       @{ 
+           int x=1;
+           foreach (string s in Model.Keys)
+            {
+             <tr>
+              <td scope="row">@x</td>
+              <td>@Model[s].User.FullName</td>
+              <td>@Model[s].Token.CreatedOn</td>
+              <td>@Model[s].Token.ExpireInMinutes</td>
+              <td> <button type="button" class="btn btn-dark">Kick</button></td>
+             </tr>
+             x = x + 1;
+           }
+        }
+        </tbody>
+</table>
+
+

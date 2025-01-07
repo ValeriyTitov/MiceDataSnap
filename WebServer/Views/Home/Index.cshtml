@@ -1,0 +1,41 @@
+﻿@using DAC.XDataSet
+
+
+
+@{
+    ViewBag.Title = "Application Server";
+}
+
+<div class="row">
+    <h4>Datascript dll location</h4>
+    <p>@TScriptRunner.DacDlllocation</p>
+</div>
+<br>
+
+<div class="row">
+    <h4>Connection strings </h4>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">DBName</th>
+                <th scope="col">Connection string</th>
+            </tr>
+        </thead>
+       
+        <tbody>
+            @{
+                int x = 1;
+                foreach (string s in ConnectionManager.DefaultInstance.ConnectionStringList.Keys)
+                {
+                    <tr>
+                        <td scope="row">@x</td>
+                        <td>@s</td>
+                        <td>@ConnectionManager.DefaultInstance.ConnectionStringList[s]</td>
+                    </tr>
+                    x = x + 1;
+                }
+            }
+        </tbody>
+    </table>
+</div>
